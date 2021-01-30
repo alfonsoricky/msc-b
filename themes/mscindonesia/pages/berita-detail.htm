@@ -6,7 +6,7 @@ is_hidden = 0
 [viewBag]
 ==
 <?php
-use BenFreke\MenuManager\Models\Menu;
+	use BenFreke\MenuManager\Models\Menu;
 
 	use RainLab\Blog\Models\Category;
 	use RainLab\Blog\Models\Post;
@@ -33,7 +33,6 @@ use BenFreke\MenuManager\Models\Menu;
 		if(!is_null($menu)){
 		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
 		}
-
 
 		$this['menu'] = $menu;
 

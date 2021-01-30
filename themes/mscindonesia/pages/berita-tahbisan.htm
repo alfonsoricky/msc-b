@@ -1,13 +1,10 @@
-title = "Berita"
-url = "/berita"
+title = "Berita Tahbisan"
+url = "/berita-tahbisan"
 layout = "default"
 is_hidden = 0
-
-[viewBag]
 ==
-<?php 
-
-	use BenFreke\MenuManager\Models\Menu;
+<?php
+use BenFreke\MenuManager\Models\Menu;
 
 	use RainLab\Blog\Models\Category;
 	use RainLab\Blog\Models\Post;
@@ -15,13 +12,13 @@ is_hidden = 0
 	function onStart() {
 		
 		$query = Post::with('categories')->whereHas('categories', function($query) {
-			return $query->where('slug', 'berita');
+			return $query->where('slug', 'kaul-tahbisan-para-msc');
 		})->orderBy('published_at', 'desc')->paginate('10');
 
 
 		$this['query'] = $query;
 
-		$menu = Menu::where('title', 'berita')->where('nest_depth', '>', '1')->first();
+		$menu = Menu::where('title', 'kaul - tahbisan para msc')->where('nest_depth', '>', '1')->first();
 
 		$groupOfMenu = array();
 
@@ -33,14 +30,14 @@ is_hidden = 0
 		
 		$this['groupOfMenu'] = $groupOfMenu;
 	}
-
+?>
 ==
 <!-- title -->
 <div class="int-title">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1>Berita</h1>
+        <h1>Kaul - Tahbisan Para MSC</h1>
       </div>
     </div>
   </div>
@@ -63,10 +60,10 @@ is_hidden = 0
 					</div>
 				</div>
 				<div class="col-sm-9">
-					<h3><a href="{{ 'berita-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
+					<h3><a href="{{ 'berita-detail-tahbisan'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
 					<div class="date">{{ item.published_at|date('d F Y') }}</div>
 					<p>{{ item.excerpt|raw }}</p>
-					<a href="{{ 'berita-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+					<a href="{{ 'berita-detail-tahbisan'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
 				</div>
 			</div>
 			<hr>
@@ -83,7 +80,7 @@ is_hidden = 0
 				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
 				<ul>
 					{% for list in groupOfMenu %}
-					{% set active = ((list.title|lower == 'berita') ? true : false )%}
+					{% set active = ((list.title|lower == 'kaul - tahbisan para msc') ? true : false )%}
 					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
 					{% endfor %}
 				</ul>

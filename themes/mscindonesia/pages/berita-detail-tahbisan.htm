@@ -1,27 +1,30 @@
-title = "Berita"
-url = "/berita"
+title = "Berita Detail Tahbisan"
+url = "/berita-detail-tahbisan/:slug"
 layout = "default"
 is_hidden = 0
-
-[viewBag]
 ==
-<?php 
-
-	use BenFreke\MenuManager\Models\Menu;
+<?php
+use BenFreke\MenuManager\Models\Menu;
 
 	use RainLab\Blog\Models\Category;
 	use RainLab\Blog\Models\Post;
 
 	function onStart() {
-		
+		$slug = $this->param('slug');
+
 		$query = Post::with('categories')->whereHas('categories', function($query) {
-			return $query->where('slug', 'berita');
-		})->orderBy('published_at', 'desc')->paginate('10');
+			return $query->where('slug', 'kaul-tahbisan-para-msc');
+		})->where('slug', $slug)->orderBy('published_at', 'desc')->first();
+
+
+		if(is_null($query)){
+			return Response::make( View::make( 'cms::404' ), 404 );
+		}
 
 
 		$this['query'] = $query;
 
-		$menu = Menu::where('title', 'berita')->where('nest_depth', '>', '1')->first();
+		$menu = Menu::where('title', 'kaul - tahbisan para msc')->where('nest_depth', '>', '1')->first();
 
 		$groupOfMenu = array();
 
@@ -29,18 +32,19 @@ is_hidden = 0
 		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
 		}
 
-		$this['menu'] = $menu;
 		
+		$this['menu'] = $menu;
+
 		$this['groupOfMenu'] = $groupOfMenu;
 	}
-
+?>
 ==
 <!-- title -->
 <div class="int-title">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1>Berita</h1>
+        <h1>{{ query.title }}</h1>
       </div>
     </div>
   </div>
@@ -48,31 +52,21 @@ is_hidden = 0
 <!-- title -->
 
 
-
 <div class="container">
   	<div class="row">
 		<div class="col-sm-9 col-sm-push-3 int-content">
-			<!-- list: berita -->
-			{% for item in query.items %}
-			<div class="row list">
-				<div class="col-sm-3">
-					<div class="col-wrap">
-						<div class="list-thumb">
-							<img src="{{ item.featured_images.0.getPath }}">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<h3><a href="{{ 'berita-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
-					<div class="date">{{ item.published_at|date('d F Y') }}</div>
-					<p>{{ item.excerpt|raw }}</p>
-					<a href="{{ 'berita-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+			
+			{% if query.banner.getPath  %}
+			<div class="col-wrap thumb-wrap">
+				<div class="thumb-article">
+					<img src="{{ query.banner.getPath }}">
 				</div>
 			</div>
-			<hr>
-			{% endfor %}
-			<!-- /list: berita -->
-			{{ query.render|raw }}
+			{% endif %}
+			
+			<h3>{{ query.title }}</h3>
+			<div class="date">{{ query.published_at|date('d F Y') }}</div>
+			{{ query.content|raw }}
 		</div>
 		<!-- /content -->
 
@@ -83,7 +77,7 @@ is_hidden = 0
 				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
 				<ul>
 					{% for list in groupOfMenu %}
-					{% set active = ((list.title|lower == 'berita') ? true : false )%}
+					{% set active = ((list.title|lower == 'kaul - tahbisan para msc') ? true : false )%}
 					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
 					{% endfor %}
 				</ul>
