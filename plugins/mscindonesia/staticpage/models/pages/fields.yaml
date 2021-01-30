@@ -1,0 +1,49 @@
+fields:
+    banner:
+        label: Banner
+        span: left
+        type: fileupload
+        mode: image
+        imageWidth: '300'
+    file:
+        label: File
+        span: left
+        type: fileupload
+        mode: file
+    name:
+        label: Name
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    page_type: 
+        label: Page type
+        span: left
+        type: dropdown
+    abstract:
+        label: Abstract
+        size: large
+        span: full
+        type: richeditor
+    content:
+        label: Content
+        size: large
+        span: full
+        type: richeditor
+    listDetails:
+        label: Details
+        span: auto
+        type: partial
+        path: field_details
+    status:
+        label: Status
+        span: left
+        default: 1
+        required: 1
+        type: switch

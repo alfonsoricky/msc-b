@@ -1,0 +1,14 @@
+<div class="col-wrap video-thumb">
+	<div class="video-wrap">
+		<video id='my-video' class='video-js vjs-big-play-centered' width='640' height='264' poster='{{ page.banner.getPath }}' data-setup='{ "controls": true, "autoplay": false, "preload": "auto", "fluid": true }'>
+		  <source src="{{ page.file.getPath }}" type="video/mp4" />
+		</video>  
+	</div>
+</div>
+
+{{ page.content|raw }}
+
+{% put scripts %}
+<link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" /> 
+<script src="https://vjs.zencdn.net/7.10.2/video.js"></script>
+{% endput %}

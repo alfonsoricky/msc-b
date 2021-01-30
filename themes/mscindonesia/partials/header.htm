@@ -1,0 +1,59 @@
+[menu]
+start = "id-1"
+activeNode = "id-1"
+numberOfLevels = 3
+==
+
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <!-- logo -->
+      <div class="col-sm-4" class="header-logo">
+        <a href="{{ 'home'|page }}">
+          <img src="{{ 'assets/images/logoweb-msc-300x138.png'|theme }}" alt="MSC Indonesia" class="logo">
+        </a>
+        <a href="https://www.youtube.com/channel/UCGH1yZDitqWQpnxKsPez-Lw">
+          <img src="{{ 'assets/images/live2.png'|theme }} " alt="MSC Indonesia" class="icon-live">
+        </a>
+      </div>
+      <!-- /logo -->
+      <div class="col-sm-8" class="header-nav">
+        <!-- lang -->
+        <!-- <div class="lang">
+          <ul>
+            <li class="lang-ind"><a href="#"><img src=" {{ 'assets/images/indoflag.jpeg'|theme }}" ></a></li>
+            <li>|</li>
+            <li class="lang-en"><a href="#"><img src="{{ 'assets/images/englishflag.png'|theme }}"></a></li>
+          </ul>
+        </div> -->
+        <!-- /lang -->
+        <!-- account nav -->
+        <div class="account-nav">
+          <ul>
+            <!--<li><a href="#" data-toggle="modal" data-target="#login-box">Login</a></li>
+            <li><a href="daftar.php">Daftar</a></li>
+            <li><a href="produk.php">Produk MSC</a></li>
+            <li class="cart"><a href="keranjang-belanja.php">Keranjang</a></li>-->
+            <li><a href="#" data-toggle="modal" data-target="#login-box">Login</a></li>
+            <li><a href="#">Daftar</a></li>
+            <li><a href="{{ 'products'|page }}">Produk MSC</a></li>
+            <li class="cart"><a href="#">Keranjang</a></li>
+
+          </ul>
+        </div>
+        <!-- /account nav -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="topnav">
+  <div class="container">
+    <div class="row">
+      <a class="toggleMenu" href="#">Menu</a>
+        {% component "menu" %}
+    </div>
+  </div>
+</div>

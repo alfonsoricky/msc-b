@@ -1,0 +1,32 @@
+==
+<?php
+	use Mscindonesia\Spiritualitashati\Models\SpiritualitasHati;
+
+	function onStart() {
+		$query = SpiritualitasHati::orderBy('sort_order', 'asc')->paginate('10');
+		$this['query'] = $query;
+	}
+
+?>
+==
+
+<div class="col-wrap thumb-wrap">
+	<div class="thumb-article">
+		<img src="{{ page.banner.getPath() }}">
+	</div>
+</div>
+
+{% for item in query.items %}
+
+<div class="row list">
+	<div class="col-sm-12">
+		<p><b><a href="{{ item.file.getPath }}" target="_blank">{{ item.name }}</a></b></p>
+		<p>{{ item.description }}</p>
+		<p><a href="{{ item.file.getPath }}" target="_blank" class="btn btn-primary">Download PDF</a></p>
+	</div>
+</div>
+<hr>
+
+{% endfor %}
+
+{{ query.render|raw }}

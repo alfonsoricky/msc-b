@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table mscindonesia_spiritualitashati_list'
+    - builder_table_create_mscindonesia_spiritualitashati_list.php

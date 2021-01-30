@@ -1,0 +1,14 @@
+title = "Cart"
+url = "/cart/:step?"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "cart/:step?"
+localeTitle[en] = "Cart"
+
+[cartContainer]
+productPage = "products"
+returnPage = "return"
+==
+{% component 'cartContainer' %}

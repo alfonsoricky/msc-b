@@ -1,0 +1,16 @@
+fields:
+    image:
+        label: Image
+        span: left
+        type: fileupload
+        mode: image
+        imageWidth: '300'
+    name:
+        label: Name
+        span: full
+        type: text
+    description:
+        label: Description
+        span: full
+        size: giant
+        type: richeditor

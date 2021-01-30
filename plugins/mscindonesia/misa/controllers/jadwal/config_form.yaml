@@ -1,0 +1,10 @@
+name: Jadwal
+form: $/mscindonesia/misa/models/jadwal/fields.yaml
+modelClass: Mscindonesia\Misa\Models\Jadwal
+defaultRedirect: mscindonesia/misa/jadwal
+create:
+    redirect: 'mscindonesia/misa/jadwal/update/:id'
+    redirectClose: mscindonesia/misa/jadwal
+update:
+    redirect: mscindonesia/misa/jadwal
+    redirectClose: mscindonesia/misa/jadwal

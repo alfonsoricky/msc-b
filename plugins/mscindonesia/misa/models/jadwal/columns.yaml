@@ -1,0 +1,10 @@
+columns:
+    name:
+        label: name
+        type: text
+    youtube:
+        label: youtube
+        type: text
+    date:
+        label: date
+        type: text

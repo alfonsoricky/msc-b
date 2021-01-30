@@ -1,0 +1,26 @@
+<div class="col-wrap thumb-wrap">
+  <div class="thumb-article">
+    <img src="{{ page.banner.getPath() }}">
+  </div>
+</div>
+<h2>{{ page.name }}</h2>
+{{ page.content|raw }}
+
+{% for detail in page.details %}
+<div class="row list">
+
+
+  <div class="col-sm-3">
+    <div class="col-wrap">
+      <div class="list-thumb">
+        <img src="{{ detail.image.getPath() }}">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <h2>{{ detail.name }}</h2>
+    {{ detail.content|raw }}
+  </div>
+</div>
+
+{% endfor %}

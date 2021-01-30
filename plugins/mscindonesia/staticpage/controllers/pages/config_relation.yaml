@@ -1,0 +1,8 @@
+details:
+    label: Details
+    manage:
+        form: $/mscindonesia/staticpage/models/details/relation.yaml
+        list: $/mscindonesia/staticpage/models/details/columns.yaml
+    view:
+        list: $/mscindonesia/staticpage/models/details/columns.yaml
+        toolbarButtons: create|delete

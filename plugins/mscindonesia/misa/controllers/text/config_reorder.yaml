@@ -1,0 +1,4 @@
+title: Text
+modelClass: Mscindonesia\Misa\Models\Text
+toolbar:
+    buttons: reorder_toolbar

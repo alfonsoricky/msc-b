@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+
+    <!-- content -->
+    <div class="col-sm-9 col-sm-push-3 int-content">
+      <!-- row -->
+      <div class="row product-featured">
+        {% for productGroup in __SELF__.products.chunk(3) %}
+          <div class="row product-list">
+            {% for product in productGroup %}
+              {% partial '@product' product=product %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="row product-featured">
+            <div class="col-md-12">
+              <div class="text-center">
+                <i class="fas fa-search fa-6x"></i>
+                <h1>{{ 'pixel.shop::component.cart.no_results'|trans }}</h1>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- /row -->
+      <nav class="text-right">
+        {{ products.render|raw }}
+      </nav>
+
+    </div>
+    <!-- /content -->
+
+    <!-- sidebar -->
+    <div class="col-sm-3 col-sm-pull-9 sidebar">
+
+      <div class="sub-nav">
+        <h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+        
+        <ul>
+          
+        {% for category in categoryList %}
+        <li class="{% if activeCategory.slug == category.slug %}active{% endif %}"><a href="{{ category.url }}">{{ category.name }}</a></li>
+        {% endfor %}
+        </ul>
+      </ul>
+      </div>
+
+     <div class="widget donasi col-wrap">
+        <div class="box-thumbnail">
+        <img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+      </div>
+      <!--<h5>Donasi Renovasi Gereja</h5>-->
+      <p></p>
+      <a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+    </div>
+
+    </div>
+    <!-- /sidebar -->
+
+
+  </div>
+</div>

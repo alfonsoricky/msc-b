@@ -1,0 +1,114 @@
+title = "Page Type Detail"
+url = "/:slug/:detail"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+==
+<?php
+use Mscindonesia\Staticpage\Models\Details;
+	use BenFreke\MenuManager\Models\Menu;
+	function onStart() {
+		$slug = $this->param('slug');
+		$detail = $this->param('detail');
+		$query = Details::with('page')->whereHas('page', function($query) use ($slug){
+			return $query->transWhere('slug', $slug);
+		})->transWhere('slug', $detail)->first();
+		
+
+		if(is_null($query)){
+			return Response::make( View::make( 'cms::404' ), 404 );
+		}
+
+		$templateDefault = 'page-no-banner';
+
+		$useTemplate = $query->page_type;
+
+
+		if($query->page_type == 'default' || is_null($query->page_type)){
+			$useTemplate = $templateDefault;
+		}
+
+
+		$this['template'] = $useTemplate;
+
+		$this['page'] = $query;
+
+
+		  //find in menu
+
+	    $find = $query->page->name;
+	    $menu = Menu::where('title', 'like', "%$find%")->first();
+        
+        
+		if($slug == 'renungan-harian'){
+            $query->page->name = 'doa & renungan harian';
+        }
+
+	    $groupOfMenu = array();
+
+	    if(!is_null($menu)){
+	      $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
+	    }
+
+
+	    $this['menu'] = $menu;
+
+	    $this['groupOfMenu'] = $groupOfMenu;
+	}
+?>
+==
+<!-- title -->
+<div class="int-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ page.name }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- title -->
+
+
+
+<div class="container">
+  <div class="row">
+
+    <!-- content -->
+    <div class="col-sm-9 col-sm-push-3 int-content">
+   	
+   	{% partial 'page_types/'~template page=page %}
+    </div>
+    <!-- /content -->
+
+    <!-- sidebar -->
+    <div class="col-sm-3 col-sm-pull-9 sidebar">
+
+      <div class="sub-nav">
+        <h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+        <ul>
+          {% for list in groupOfMenu %}
+          
+              {% set active = ((list.title|lower == page.page.name|lower) ? true : false )%}
+              <li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+         
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="widget donasi col-wrap">
+        <div class="box-thumbnail">
+          <img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+        </div>
+        <!--<h5>Donasi Renovasi Gereja</h5>-->
+        <p></p>
+        <a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+      </div>
+
+    </div>
+    <!-- /sidebar -->
+
+
+  </div>
+</div>

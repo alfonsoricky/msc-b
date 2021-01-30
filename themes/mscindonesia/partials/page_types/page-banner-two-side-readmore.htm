@@ -1,0 +1,14 @@
+<div class="col-wrap download-doc text-center">
+  <div class="download-thumb">
+    <img src="{{ page.banner.getPath }}">
+  </div>
+  <div class="row">
+    {% for detail in page.details %}
+    <div class="col-sm-6">
+      <h3>{{ detail.name }}</h3>
+      {{ detail.abstract|raw }}
+      <a href="{{ 'page-type-detail'|page({slug:page.slug, detail:detail.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>

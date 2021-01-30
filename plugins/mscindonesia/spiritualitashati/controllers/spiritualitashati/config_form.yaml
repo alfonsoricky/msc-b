@@ -1,0 +1,10 @@
+name: SpiritualitasHati
+form: $/mscindonesia/spiritualitashati/models/spiritualitashati/fields.yaml
+modelClass: Mscindonesia\Spiritualitashati\Models\SpiritualitasHati
+defaultRedirect: mscindonesia/spiritualitashati/spiritualitashati
+create:
+    redirect: 'mscindonesia/spiritualitashati/spiritualitashati/update/:id'
+    redirectClose: mscindonesia/spiritualitashati/spiritualitashati
+update:
+    redirect: mscindonesia/spiritualitashati/spiritualitashati
+    redirectClose: mscindonesia/spiritualitashati/spiritualitashati

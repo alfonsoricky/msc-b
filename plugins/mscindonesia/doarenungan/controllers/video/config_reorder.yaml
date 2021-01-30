@@ -1,0 +1,4 @@
+title: Video
+modelClass: Mscindonesia\Doarenungan\Models\Video
+toolbar:
+    buttons: reorder_toolbar

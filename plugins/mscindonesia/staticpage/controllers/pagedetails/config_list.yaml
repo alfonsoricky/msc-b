@@ -1,0 +1,12 @@
+list: $/mscindonesia/staticpage/models/details/columns.yaml
+modelClass: Mscindonesia\Staticpage\Models\Details
+title: PageDetails
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'mscindonesia/staticpage/pagedetails/update/:id'

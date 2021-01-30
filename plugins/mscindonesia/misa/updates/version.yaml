@@ -1,0 +1,17 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table mscindonesia_misa_jadwal'
+    - builder_table_create_mscindonesia_misa_jadwal.php
+1.0.3:
+    - 'Created table mscindonesia_misa_text'
+    - builder_table_create_mscindonesia_misa_text.php
+1.0.4:
+    - 'Updated table mscindonesia_misa_jadwal'
+    - builder_table_update_mscindonesia_misa_jadwal.php
+1.0.5:
+    - 'Updated table mscindonesia_misa_jadwal'
+    - builder_table_update_mscindonesia_misa_jadwal_2.php
+1.0.6:
+    - 'Updated table mscindonesia_misa_jadwal'
+    - builder_table_update_mscindonesia_misa_jadwal_3.php

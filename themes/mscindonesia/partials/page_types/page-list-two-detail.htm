@@ -1,0 +1,19 @@
+
+{% if page.slug == 'program-spiritualitas-hati' %}
+{{ page.content|raw }}
+
+{% endif %}
+
+
+<div class="row padding">
+  {% for detail in page.details %}
+  <div class="col-sm-6">
+    <div class="col-wrap">
+      <div class="box-thumbnail">
+      <a href="{{ 'page-type-detail'|page({slug:page.slug, detail:detail.slug}) }}"><img src="{{ detail.image.getPath }}"></a>
+      </div>
+      <h3><a href="{{ 'page-type-detail'|page({slug:page.slug, detail:detail.slug}) }}">{{ detail.name }}</a></h3>
+    </div>
+  </div>
+  {% endfor %}
+</div>

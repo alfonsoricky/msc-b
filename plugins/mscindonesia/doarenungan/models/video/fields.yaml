@@ -1,0 +1,16 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    link_youtube:
+        label: 'Link Youtube'
+        span: auto
+        required: 1
+        type: text
+    created_at:
+        label: 'Publish On'
+        mode: datetime
+        span: auto
+        type: datepicker

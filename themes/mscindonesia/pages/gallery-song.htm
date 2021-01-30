@@ -1,0 +1,96 @@
+title = "Gallery Song"
+url = "/galeri-lagu"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+==
+<?php 
+
+	use BenFreke\MenuManager\Models\Menu;
+
+	use RainLab\Blog\Models\Category;
+	use RainLab\Blog\Models\Post;
+
+	function onStart() {
+		
+		$query = Post::with('categories')->whereHas('categories', function($query) {
+			return $query->where('slug', 'galeri-lagu');
+		})->orderBy('published_at', 'desc')->paginate('9');
+
+		$this['query'] = $query;
+
+		$menu = Menu::where('title', 'galeri lagu')->where('nest_depth', '>', '1')->first();
+
+		$groupOfMenu = array();
+
+		if(!is_null($menu)){
+		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
+		}
+
+
+		$this['menu'] = $menu;
+
+		$this['groupOfMenu'] = $groupOfMenu;
+	}
+==
+
+<!-- title -->
+<div class="int-title">
+   <div class="container">
+      <div class="row">
+         <div class="col-sm-12">
+            <h1>Galeri Lagu</h1>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- title -->
+
+
+<div class="container">
+   <div class="row">
+      <div class="col-sm-9 col-sm-push-3 int-content">
+         <div class="row">
+
+         	{% for item in query.items %}
+            <div class="col-sm-4 col-xs-6">
+               <div class="col-wrap video-thumb-lagu">
+                  <div class="video-wrap"><iframe width="258" height="183" src="https://www.youtube.com/embed/{{ item.youtube }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+               </div>
+               <div class="panel-body post-body">
+                  <p><b>{{ item.title }}</b></p>
+                  <a href="https://www.youtube.com/watch?v={{ item.youtube }}" class="btn btn-primary" target="_blank">Tonton di Youtube</a>
+                  
+               </div>
+            </div>
+            {% endfor %}
+
+        	{{ query.render|raw }}
+         </div>
+      </div>
+      <!-- /content -->
+		<!-- sidebar -->
+		<div class="col-sm-3 col-sm-pull-9 sidebar">
+
+			<div class="sub-nav">
+				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+				<ul>
+					{% for list in groupOfMenu %}
+					{% set active = ((list.title|lower == 'galeri lagu') ? true : false )%}
+					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+					{% endfor %}
+				</ul>
+				</div>
+
+				<div class="widget donasi col-wrap">
+				<div class="box-thumbnail">
+				<img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+			</div>
+			<!--<h5>Donasi Renovasi Gereja</h5>-->
+			<p></p>
+			<a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+		</div>
+   </div>
+	</div>
+</div>

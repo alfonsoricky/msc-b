@@ -1,0 +1,34 @@
+title = "Produk"
+url = "/products/:category?"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "products/:category?"
+localeTitle[en] = "Products"
+
+[shopProductsList]
+categoryFilter = "{{ :category }}"
+scope = "showItems"
+limitType = "paginate"
+take = 20
+orderBy = "name"
+sort = "asc"
+productPage = "product-detail"
+categoryPage = "products"
+showCategoriesFilter = 1
+showQuickAdd = 1
+typeCategoriesFilter = "dropdown"
+==
+<!-- title -->
+<div class="int-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Produk MSC</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- title -->
+{% component 'shopProductsList' %}

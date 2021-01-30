@@ -1,0 +1,10 @@
+name: Video
+form: $/mscindonesia/doarenungan/models/video/fields.yaml
+modelClass: Mscindonesia\Doarenungan\Models\Video
+defaultRedirect: mscindonesia/doarenungan/video
+create:
+    redirect: 'mscindonesia/doarenungan/video/update/:id'
+    redirectClose: mscindonesia/doarenungan/video
+update:
+    redirect: mscindonesia/doarenungan/video
+    redirectClose: mscindonesia/doarenungan/video

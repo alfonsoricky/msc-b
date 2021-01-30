@@ -1,0 +1,10 @@
+name: Text
+form: $/mscindonesia/misa/models/text/fields.yaml
+modelClass: Mscindonesia\Misa\Models\Text
+defaultRedirect: mscindonesia/misa/text
+create:
+    redirect: 'mscindonesia/misa/text/update/:id'
+    redirectClose: mscindonesia/misa/text
+update:
+    redirect: mscindonesia/misa/text
+    redirectClose: mscindonesia/misa/text

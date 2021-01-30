@@ -1,0 +1,270 @@
+title = "Home"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+==
+<?php
+use Mscindonesia\Staticpage\Models\Settings;
+  use RainLab\Blog\Models\Category;
+  use RainLab\Blog\Models\Post;
+  use Pixel\Shop\Models\Item;
+
+	function onStart() {
+
+		$query = Settings::where('item', 'msc_management_settings')->first();
+
+		$this['banners'] = $query->banners;
+
+		$value = $query->value;
+
+		/*content*/
+		
+		$this['content'] = array(
+			'left' => array(
+				'title' => $value['content_left_title'],
+				'description' => $value['content_left_description'],
+				'link' => $value['content_left_link']
+			),
+			'center' => array(
+				'title' => $value['content_center_title'],
+				'description' => $value['content_center_description'],
+				'link' => $value['content_center_link']
+			),
+			'right' => array(
+				'title' => $value['content_right_title'],
+				'description' => $value['content_right_description'],
+				'link' => $value['content_right_link']
+			)
+		);
+
+
+    // get category berita dulu   
+    $posts = Post::with(['categories'])->whereHas('categories', function($query) {
+      return $query->where('slug', 'berita');
+    })->where('published',1)->limit('1')->orderBy('published_at', 'desc')->get();
+
+    $this['posts'] = $posts;
+    
+        // get category berita dulu   
+    $msctv = Post::with(['categories'])->whereHas('categories', function($query) {
+      return $query->where('slug', 'msc-tv');
+    })->where('published',1)->limit('1')->orderBy('published_at', 'desc')->get();
+
+    $this['msctv'] = $msctv;
+
+
+    //get product
+    $products = Item::where(array('is_visible'=>1,'is_featured'=>1))->limit(4)->get();
+
+
+    $this['products'] = $products;
+
+
+
+
+
+
+	}
+?>
+==
+<!-- slideshow -->
+<div class="slideshow">
+  <div class="cycle-slideshow" data-cycle-fx="fade" data-cycle-timeout="5000">
+      <div class="cycle-pager"></div>
+      {% for banner in banners %}
+      	<img src="{{ banner.getPath() }}">
+      {% endfor %}
+  </div>
+</div>
+<!-- /slideshow -->
+
+<!-- container -->
+<div class="container">
+
+  <!-- intro -->
+  <div class="row padding">
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <h2><img src="{{ 'assets/images/icon-intro-siapakami.png'|theme }}" width="32" class="img-inline"> {{ content.left.title }}</h2>
+        {{ content.left.description|raw }}
+        <a href="{{ content.left.link }}" class="btn btn-primary">Selengkapnya</a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <h2><img src="{{ 'assets/images/icon-intro-pendidikan.png'|theme }}" width="32" class="img-inline">{{ content.center.title }}</h2>
+        {{ content.center.description|raw }}
+		<a href="{{ content.center.link }}" class="btn btn-primary">Selengkapnya</a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <h2><img src="{{ 'assets/images/icon-intro-donasi.png'|theme }}"  width="32" class="img-inline" >{{ content.right.title }}</h2> 
+       	{{ content.right.description|raw }}
+		<a href="{{ content.right.link }}" class="btn btn-primary">Donasi</a>
+      </div>
+    </div>
+  </div>
+  <!-- /intro -->
+
+  <!-- berita -->
+  <div class="row padding">
+    <div class="text-center">
+      <h2><img src="{{ 'assets/images/icon-berita.png'|theme }}" width="32" class="img-inline"> Berita MSC Terkini</h2>
+      <p>Berita-berita terkini seputar acara dan kegiatan Kongregasi Misionaris Hati Kudus (Tarekat MSC)</p>
+        <p><a href="{{  'berita' }}" class="btn btn-primary">Berita MSC</a></p>
+        &nbsp;
+    </div>
+    {% for post in msctv %}
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <div class="box-thumbnail">
+          <a href="berita-artikel.php">
+            <img src="{{ 'storage/app/media/sapaan-provinsialat-1.png' }}">
+          </a>
+        </div>
+        <div class="date">{{ post.published_at|date('d F Y')  }}<a href="{{  'msc-tv' }}" class="cat video">Video</a> 
+            
+        {% if post.categories.count %}
+           
+        {% endif %}
+
+        </div>
+        <h5><a href="https://www.youtube.com/watch?v=zKuSlVbsxZ0%3Frel%3D0">{{ post.title  }}</a></h5>
+      </div>
+    </div>
+    {% endfor %}
+    
+    {% for post in msctv %}
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <div class="box-thumbnail">
+          <a href="{{  'msc-tv' }}">
+            <img src="{{ 'assets/images/msctv-thumb.jpg'|theme }}">
+          </a>
+        </div>
+        <div class="date">{{ post.published_at|date('d F Y')  }}<a href="{{  'msc-tv' }}" class="cat video">Video</a> 
+            
+        {% if post.categories.count %}
+           
+        {% endif %}
+
+        </div>
+        <h5><a href="{{ 'msc-tv' }}">{{ post.title  }}</a></h5>
+      </div>
+    </div>
+    {% endfor %}
+    {% for post in posts %}
+    <div class="col-sm-4">
+      <div class="col-wrap">
+        <div class="box-thumbnail">
+          <a href="{{ 'berita-detail'|page({slug:post.slug}) }}">
+            {% if post.featured_images.count %}
+            <img src="{{ post.featured_images.0.thumb(0,0,'crop') }}">
+            {% endif %}
+          </a>
+        </div>
+        <div class="date">{{ post.published_at|date('d F Y')  }}<a href="{{ 'berita-detail'|page({slug:post.slug}) }}" class="cat berita">Berita</a> 
+            
+        {% if post.categories.count %}
+           
+        {% endif %}
+
+        </div>
+        <h5><a href="{{ 'berita-detail'|page({slug:post.slug}) }}">{{ post.title  }}</a></h5>
+      </div>
+    </div>
+    {% endfor %}
+    
+   
+  </div>
+  <!-- /berita -->
+
+</div>
+<!-- /container -->
+
+<!-- produk -->
+<div class="intro-produk">
+  <div class="container">
+    <div class="row padding">
+      <div class="text-center">
+        <h2><img src="{{ 'assets/images/icon-produk.png'|theme }}" width="32" class="img-inline"> Produk Terbaru</h2>
+        <p>Anda dapat mendukung misi pelayanan para Misionaris Hati Kudus dengan membeli produk berikut<br></p>
+          <!--<p><a href="produk.php" class="btn btn-primary">Produk MSC</a></p>-->
+          <p><a href="{{ 'products'|page }}" class="btn btn-primary">Produk MSC</a></p>
+          &nbsp;
+      </div>
+
+      {% for product in products %}
+      <div class="col-sm-3">
+        <div class="col-wrap">
+          <div class="box-thumbnail">            
+            {% if product.image %}
+            <a href="{{ 'product-detail'|page({slug: product.slug}) }}"></a>
+            <img class="card-img-top img-responsive" src="{{ product.image.thumb(500,500,'crop') }}" alt="">
+            {% endif %}
+          </div>
+            <h5><a href="{{ 'product-detail'|page({slug: product.slug}) }}">{{ product.name  }}</a></h5>
+            <!--<p>{{ product.short_description|raw }}</p>-->
+          <div class="box-price">{{ product.getPrice()|currency }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- /produk -->
+
+
+<!-- 3 footer -->
+<div class="container">
+  <div class="row padding">
+
+    <div class="col-sm-4 box-footer">
+      <h2><img src="{{ 'assets/images/icon-kalendar.png'|theme }}" width="32"> Kalender MSC</h2>
+      <ul>
+        <li><a href="{{ 'page-type-detail'|page({slug:'kalender-msc', detail:'6-oktober-hari-berdirinya-provinsi-msc-indonesia'}) }}">6 OKTOBER. Hari berdirinya Provinsi MSC Indonesia</a></li>
+        <li><a href="{{ 'page-type-detail'|page({slug:'kalender-msc', detail:'21-oktober-hari-wafatnya-pater-pendiri-pater-jules-chevalier-msc-dan-hari-mendoakan-arwah-semua-msc'}) }}">21 OKTOBER. Hari wafatnya Pater Pendiri, Pater Jules Chevalier MSC dan hari mendoakan arwah semua MSC</a></li>
+        <li><a href="{{ 'page-type-detail'|page({slug:'kalender-msc', detail:'8-desember-hari-berdirinya-kongregasi-misionaris-hati-kudus-tarekat-msc'}) }}">8 DESEMBER. Hari berdirinya Kongregasi Misionaris Hati Kudus (Tarekat MSC)</a></li>
+      </ul>
+      <a href="{{ 'page-types'|page({slug:'kalender-msc'}) }}" class="btn btn-primary">Kalender MSC</a>
+    </div>
+    <div class="col-sm-4 box-footer">
+      <h2><img src="{{ 'assets/images/icon-misa.png'|theme }}" width="32"> Misa</h2>
+      <ul>
+        <li><a href="{{ 'page-type-detail'|page({slug:'misa', detail:'jadwal-misa'}) }}">Jadwal Misa </a></li>
+        <li><a href="{{ 'page-type-detail'|page({slug:'misa', detail:'text-misa'}) }}">Teks Misa</a></li>
+        <li><a href="{{ 'page-type-detail'|page({slug:'misa', detail:'persembahan-kasih'}) }}">Persembahan Kasih</a></li>
+      </ul>
+      <a href="https://www.youtube.com/channel/UCGH1yZDitqWQpnxKsPez-Lw" class="btn btn-primary">Live Streaming</a>
+    </div>
+    <div class="col-sm-4 box-footer">
+      <h2><img src="{{ 'assets/images/icon-renungan.png'|theme }}" width="32"> Doa & Renungan Harian</h2>
+      <ul>
+        <li><a href="{{ 'page-type-detail'|page({slug:'doa-renungan-harian', detail:'doa'}) }}">Kumpulan Doa</a></li>
+
+        <li><a href="{{ 'page-type-detail'|page({slug:'doa-renungan-harian', detail:'renungan'}) }}">Renungan Harian dari Buku Percikan Hati</a></li>
+      </ul>
+      <a href="{{ 'page-types'|page({slug:'doa-renungan-harian'}) }}" class="btn btn-primary">Doa &amp; Renungan</a>
+    </div>
+
+  </div>
+</div>
+<!-- /3 footer -->
+
+<!-- Modal: Pop up 50tahun -->
+<div class="modal fade" id="50tahun" tabindex="-1" role="dialog" aria-labelledby="50tahun">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- content -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <img src="storage/app/media/thumb-50tahun.jpg">
+        <!-- /content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal: Pop up 50tahun -->

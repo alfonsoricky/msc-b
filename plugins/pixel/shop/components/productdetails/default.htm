@@ -1,0 +1,150 @@
+{% put meta %}
+  <title>{{ product.title }}</title>
+  <meta name="description" content="{{ product.seo_summary }}">
+  <meta name="keywords" content="{{ product.keywords }}">
+  <meta property="og:title" content="{{ product.title }}" />
+  <meta property="og:url" content="{{ url_current()|url_encode }}" />
+  <meta property="og:description" content="{{ product.seo_summary }}" />
+  <meta property="og:image" content="{{ product.getMainImage().thumb(600, 315, 'crop')|app }}" />
+{% endput %}
+
+<!-- title -->
+<div class="int-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ product.name }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- title -->
+
+<div class="container">
+  <div class="row">
+
+    <!-- content -->
+    <div class="col-sm-9 col-sm-push-3 int-content">
+
+      <!-- row -->
+      <div class="row">
+
+        <!-- image -->
+        <div class="col-sm-6 col-sm-push-6">
+          <div class="col-wrap">
+            <div class="produk-thumbnail">
+
+              <img class="card-img-top img-responsive" src="{{ product.image.thumb(500,500,'crop') }}" alt="">
+
+            </div>
+          </div>
+        </div>
+        <!-- image -->
+
+        <!-- detail -->
+        <div class="col-sm-6 col-sm-pull-6">
+
+          <div class="short-desc">
+
+            {{ product.short_description|raw }}
+          </div>
+
+          <hr>
+          {% if product.is_on_sale %}
+
+          <div class="disc-price">
+            <strike>{{ product.getOldPrice()|currency }}</strike>
+          </div>
+          {% endif %}
+
+          
+          <div class="price">
+            <p>{{ product.getPrice()|currency }}</p>
+          </div>
+          
+          {% if product.size %}
+          <div>
+            <p>Standard Ukuran</p>
+            <div class="produk-thumbnail">
+              <img src="{{ product.size.getPath }}"/>
+            </div>
+          </div>
+          {% endif %}
+
+         <!--  <div class="add-to-cart">
+            <form class="form-inline">
+              <input type="text" class="form-control input-cart" value="1">
+              <input type="submit" class="btn btn-primary" value="Add to Cart">
+            </form>
+          </div> -->
+
+        </div>
+        <!-- detail -->
+
+      </div>
+      <!-- /row -->
+
+      <!-- row -->
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs produk-tab" role="tablist">
+            <li role="presentation" class="active"><a href="#detail" aria-controls="detail" role="tab" data-toggle="tab"><b>Cara Pemesanan</b></a></li>
+            <!--<li role="presentation"><a href="#ongkir" aria-controls="ongkir" role="tab" data-toggle="tab">Ongkos Kirim</a></li>
+            <li role="presentation"><a href="#lainnya" aria-controls="lainnya" role="tab" data-toggle="tab">Lainnya</a></li>-->
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="detail">
+              {{ product.description|raw }}
+            </div>
+            <!--<div role="tabpanel" class="tab-pane fade" id="ongkir">
+              <h5>Info ongkos kirim</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nulla purus, aliquet ut turpis vitae, aliquam tempus lacus. Donec vitae semper lacus, at pellentesque justo. Vivamus eget sapien ut arcu finibus tempor. Phasellus sagittis diam mattis tellus maximus, quis tempus libero pellentesque. Cras commodo quis quam nec tristique.</p>
+              <p>Nunc ac nunc tristique, accumsan metus at, fermentum diam. Quisque tincidunt dolor vitae lectus gravida laoreet. Donec sit amet quam a lorem ultrices volutpat. Fusce faucibus efficitur mi eget gravida. Etiam sit amet commodo sapien. Donec gravida mollis libero, tempus mattis ipsum molestie quis. Phasellus tempus lorem sapien, vel finibus urna ultrices vitae.</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="lainnya">
+              <h5>Informasi Lainnya</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nulla purus, aliquet ut turpis vitae, aliquam tempus lacus. Donec vitae semper lacus, at pellentesque justo. Vivamus eget sapien ut arcu finibus tempor. Phasellus sagittis diam mattis tellus maximus, quis tempus libero pellentesque. Cras commodo quis quam nec tristique.</p>
+              <p>Mauris lorem erat, feugiat non rhoncus et, commodo sit amet sem. Duis risus nunc, malesuada vitae est in, varius lobortis tellus. Quisque mollis fringilla eleifend. Nunc maximus mattis diam quis hendrerit. Aenean nisi erat, dapibus sit amet magna vitae, gravida malesuada urna. Suspendisse et pharetra erat. Etiam viverra risus in ante vehicula hendrerit. Fusce pretium viverra est, eu lacinia nibh molestie non. Cras gravida enim et fermentum tempus. Morbi dictum nulla eget tortor venenatis congue. Aliquam neque odio, lobortis in eros ac, vestibulum condimentum ex. Quisque a ante sed magna efficitur ultrices. Aenean aliquet est ipsum, ac iaculis odio volutpat quis. Donec faucibus imperdiet fermentum.</p>
+            </div>-->
+          </div>
+        </div>
+      </div>
+      <!-- /row -->
+
+    </div>
+    <!-- /content -->
+
+    <!-- sidebar -->
+    <div class="col-sm-3 col-sm-pull-9 sidebar">
+
+      <div class="sub-nav">
+
+        <h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>        
+        <ul>
+        {% for category in categoryList %}
+        
+        <li class="{% if product.categories[0].slug == category.name|lower %}active{% endif %}"><a href="{{ category.url }}/{{ category.name|lower }}">{{ category.name }}</a></li>
+        {% endfor %}
+
+
+        </ul>
+      </div>
+
+      <div class="widget donasi col-wrap">
+        <div class="box-thumbnail">
+        <img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+      </div>
+      <!--<h5>Donasi Renovasi Gereja</h5>-->
+      <p></p>
+      <a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+
+    </div>
+    <!-- /sidebar -->
+
+  </div>
+
+  </div>
+</div>

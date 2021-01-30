@@ -1,0 +1,15 @@
+plugin:
+    name: 'mscindonesia.spiritualitashati::lang.plugin.name'
+    description: 'mscindonesia.spiritualitashati::lang.plugin.description'
+    author: mscindonesia
+    icon: oc-icon-adjust
+    homepage: ''
+permissions:
+    msc.spiritualitashati:
+        tab: mscindonesia
+        label: 'Spiritualitas Hati'
+navigation:
+    msc.spiritualitas.hati:
+        label: 'Spiritualitas Hati'
+        url: mscindonesia/spiritualitashati/spiritualitashati
+        icon: icon-life-ring

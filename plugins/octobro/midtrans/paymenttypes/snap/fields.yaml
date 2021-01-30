@@ -1,0 +1,164 @@
+# ===================================
+#  Gateway Field Definitions
+# ===================================
+
+fields:
+    test_mode:
+        label: Sandbox mode
+        type: switch
+        default: true
+        span: left
+        tab: Configuration
+        comment: Use the Snap Sandbox Test Environment to try out payments using this gateway.
+
+    payment_logo:
+        label: Logo
+        type: mediafinder
+        mode: image
+        span: right
+        tab: Configuration
+
+    expiry_duration:
+        label: Expiry time (Duration)
+        type: number
+        default: 1
+        span: right
+        tab: Configuration
+
+    expiry_unit:
+        label: Expiry time (Unit)
+        type: dropdown
+        options:
+            day: Day(s)
+            hour: Hour(s)
+            minute: Minute(s)
+        default: day
+        span: right
+        tab: Configuration
+
+    is_sanitized:
+        label: Is Sanitized
+        type: switch
+        default: true
+        span: left
+        tab: Configuration
+        comment: Sanitizing the data
+
+    is_3ds:
+        label: Use 3DS
+        type: switch
+        default: true
+        tab: Configuration
+        comment: Use 3D-Secure authentication when using credit card
+
+    client_key:
+        label: Client Key
+        comment: You can find your Client keys on your Veritrans dashboard in Account Setting > Access Keys section.
+        required: true
+        span: auto
+        tab: Configuration
+
+    server_key:
+        label: Server Key
+        comment: You can find your Server keys on your Veritrans dashboard in Account Setting > Access Keys section.
+        required: true
+        span: auto
+        tab: Configuration
+
+    invoice_paid_status:
+        label: Invoice paid status
+        comment: Select status to assign the invoice in case of successful payment.
+        default: paid
+        tab: Configuration
+        span: auto
+        type: dropdown
+
+    invoice_challange_status:
+        label: Invoice challange status
+        comment: Select status to assign the invoice in case of challange payment.
+        default: approved
+        tab: Configuration
+        span: auto
+        type: dropdown
+
+    invoice_pending_status:
+        label: Invoice pending status
+        comment: Select status to assign the invoice in case of pending payment.
+        default: approved
+        tab: Configuration
+        span: auto
+        type: dropdown
+
+    invoice_cancel_status:
+        label: Invoice cancel status
+        comment: Select status to assign the invoice in case of canceled payment.
+        default: void
+        tab: Configuration
+        span: auto
+        type: dropdown
+
+    # Channels
+    is_credit_card:
+        label: Credit card
+        type: checkbox
+        tab: Channels
+    is_bca_va:
+        label: BCA Virtual Account
+        type: checkbox
+        tab: Channels
+    is_permata_va:
+        label: Permata Virtual Account
+        type: checkbox
+        tab: Channels
+    is_bni_va:
+        label: BNI Virtual Account
+        type: checkbox
+        tab: Channels
+    is_echannel:
+        label: Mandiri Bill Payment
+        type: checkbox
+        tab: Channels
+    is_gopay:
+        label: GO-PAY
+        type: checkbox
+        tab: Channels
+    is_bca_klikbca:
+        label: KlikBCA
+        type: checkbox
+        tab: Channels
+    is_bca_klikpay:
+        label: BCA KlikPay 
+        type: checkbox
+        tab: Channels
+    is_mandiri_clickpay:
+        label: Mandiri Clickpay
+        type: checkbox
+        tab: Channels
+    is_cimb_clicks:
+        label: Cimb Click
+        type: checkbox
+        tab: Channels
+    is_danamon_online:
+        label: Danamon Online
+        type: checkbox
+        tab: Channels
+    is_bri_epay:
+        label: BRI Epay
+        type: checkbox
+        tab: Channels
+    is_mandiri_ecash:
+        label: Mandiri E-Cash
+        type: checkbox
+        tab: Channels
+    is_indomaret:
+        label: Indomaret
+        type: checkbox
+        tab: Channels
+    is_alfamart:
+        label: Alfamart
+        type: checkbox
+        tab: Channels
+    is_akulaku:
+        label: Akulaku
+        type: checkbox
+        tab: Channels

@@ -1,0 +1,15 @@
+<div class="col-sm-4 col-xs-6 product-item">
+  <div class="col-wrap">
+    <div class="box-thumbnail s">
+			{% if product.image %}
+			<a href="{{ product.url }}"></a>
+				<img class="card-img-top img-responsive" src="{{ product.image.thumb(500,500,'crop') }}" alt="">
+            
+			{% endif %}
+    </div>
+    <h5><a href="{{ product.url }}">{{ str_limit( product.name, 48,'...')  }}</a></h5>
+    <div class="box-price">{{ product.getPrice()|currency }}</div>
+  </div>
+</div>
+
+

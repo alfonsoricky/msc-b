@@ -1,0 +1,24 @@
+plugin:
+    name: 'mscindonesia.doarenungan::lang.plugin.name'
+    description: 'mscindonesia.doarenungan::lang.plugin.description'
+    author: mscindonesia
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    msc.doarenungan:
+        label: 'Doa Renungan'
+        url: mscindonesia/doarenungan/doa
+        icon: icon-life-ring
+        sideMenu:
+            msc.doarenungan.doa:
+                label: Doa
+                url: mscindonesia/doarenungan/doa
+                icon: icon-sitemap
+            msc.doarenungan.renungan:
+                label: Renungan
+                url: mscindonesia/doarenungan/renungan
+                icon: icon-slideshare
+            msc.doarenunga.video:
+                label: Video
+                url: mscindonesia/doarenungan/video
+                icon: icon-sitemap

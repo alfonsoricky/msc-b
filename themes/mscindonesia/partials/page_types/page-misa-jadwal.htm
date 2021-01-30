@@ -1,0 +1,30 @@
+==
+<?php
+	use Mscindonesia\Misa\Models\Jadwal;
+
+	function onStart() {
+		$query = Jadwal::orderBy('date', 'desc')->paginate('10');
+		$this['jadwal'] = $query;
+	}
+
+?>
+==
+<div class="col-wrap thumb-wrap">
+  <div class="thumb-article">
+    <img src="{{ page.banner.getPath() }}">
+  </div>
+</div>
+<div class="row list">
+	{% for item in jadwal.items %}
+	<div class="col-sm-12">
+	  <p><b>{{ item.name }} {{ item.date|date("d F Y")  }}</b></p>
+	  <div class="list-misa">
+	    <ul>
+	      <li><span class="misa-label">Jam</span> <span class="divider">:</span> <span class="value">{{ item.time|date("H:i") }} WIB</span></li>
+	      <li><span class="misa-label">Streaming</span> <span class="divider">:</span> <span class="value"><a href="https://www.youtube.com/watch?v={{ item.youtube }}" target="_blank">Youtube</a></span></li>
+	    </ul>
+	  </div>
+	</div>
+	{% endfor %}
+	{{ jadwal.render|raw }}
+</div>

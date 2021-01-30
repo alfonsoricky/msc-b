@@ -1,0 +1,12 @@
+list: $/mscindonesia/misa/models/jadwal/columns.yaml
+modelClass: Mscindonesia\Misa\Models\Jadwal
+title: Jadwal
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'mscindonesia/misa/jadwal/update/:id'

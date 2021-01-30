@@ -1,0 +1,20 @@
+<!-- list: berita -->
+
+{% for detail in page.details %}
+<div class="row list"  id="1">
+  <div class="col-sm-3">
+    <div class="col-wrap">
+      <div class="list-thumb">
+        <img src="{{ detail.image.getPath }}">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+
+    <h3><a href="{{ 'page-type-detail'|page({slug:page.slug, detail:detail.slug}) }}">{{ detail.name }}</a></h3>
+    {{ detail.abstract|raw }}
+    <a href="{{ 'page-type-detail'|page({slug:page.slug, detail:detail.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+  </div>
+</div>
+<hr>
+{% endfor %}

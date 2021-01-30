@@ -1,0 +1,16 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        default: 'Text Misa'
+        type: text
+    date:
+        label: Date
+        span: auto
+        mode: date
+        type: datepicker
+    file:
+        label: File
+        span: left
+        type: fileupload
+        mode: file

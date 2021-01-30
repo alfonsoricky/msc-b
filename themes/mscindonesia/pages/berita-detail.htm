@@ -1,0 +1,99 @@
+title = "Berita Detail"
+url = "/berita/:slug"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+==
+<?php
+use BenFreke\MenuManager\Models\Menu;
+
+	use RainLab\Blog\Models\Category;
+	use RainLab\Blog\Models\Post;
+
+	function onStart() {
+		$slug = $this->param('slug');
+
+		$query = Post::with('categories')->whereHas('categories', function($query) {
+			return $query->where('slug', 'berita');
+		})->where('slug', $slug)->orderBy('published_at', 'desc')->first();
+
+
+		if(is_null($query)){
+			return Response::make( View::make( 'cms::404' ), 404 );
+		}
+
+
+		$this['query'] = $query;
+
+		$menu = Menu::where('title', 'berita')->where('nest_depth', '>', '1')->first();
+
+		$groupOfMenu = array();
+
+		if(!is_null($menu)){
+		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
+		}
+
+
+		$this['menu'] = $menu;
+
+		$this['groupOfMenu'] = $groupOfMenu;
+	}
+?>
+==
+<!-- title -->
+<div class="int-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ query.title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- title -->
+
+
+<div class="container">
+  	<div class="row">
+		<div class="col-sm-9 col-sm-push-3 int-content">
+			
+			{% if query.banner.getPath  %}
+			<div class="col-wrap thumb-wrap">
+				<div class="thumb-article">
+					<img src="{{ query.banner.getPath }}">
+				</div>
+			</div>
+			{% endif %}
+			
+			<h3>{{ query.title }}</h3>
+			<div class="date">{{ query.published_at|date('d F Y') }}</div>
+			{{ query.content|raw }}
+		</div>
+		<!-- /content -->
+
+		<!-- sidebar -->
+		<div class="col-sm-3 col-sm-pull-9 sidebar">
+
+			<div class="sub-nav">
+				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+				<ul>
+					{% for list in groupOfMenu %}
+					{% set active = ((list.title|lower == 'berita') ? true : false )%}
+					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+					{% endfor %}
+				</ul>
+				</div>
+
+				<div class="widget donasi col-wrap">
+				<div class="box-thumbnail">
+				<img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+			</div>
+			<!--<h5>Donasi Renovasi Gereja</h5>-->
+			<p></p>
+			<a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+		</div>
+
+		</div>
+	</div>
+</div>

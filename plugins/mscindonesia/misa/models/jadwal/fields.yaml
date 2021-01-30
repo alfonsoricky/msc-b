@@ -1,0 +1,21 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+        default: 'Misa Mingguan'
+    date:
+        label: Date
+        mode: date
+        span: auto
+        type: datepicker
+    time:
+        label: Time
+        mode: time
+        span: auto
+        type: datepicker
+    youtube:
+        label: Youtube
+        span: auto
+        type: text
+        comment: 'Only ID of youtube'

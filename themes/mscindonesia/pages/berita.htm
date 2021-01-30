@@ -1,0 +1,104 @@
+title = "Berita"
+url = "/berita"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+==
+<?php 
+
+	use BenFreke\MenuManager\Models\Menu;
+
+	use RainLab\Blog\Models\Category;
+	use RainLab\Blog\Models\Post;
+
+	function onStart() {
+		
+		$query = Post::with('categories')->whereHas('categories', function($query) {
+			return $query->where('slug', 'berita');
+		})->orderBy('published_at', 'desc')->paginate('10');
+
+
+		$this['query'] = $query;
+
+		$menu = Menu::where('title', 'berita')->where('nest_depth', '>', '1')->first();
+
+		$groupOfMenu = array();
+
+		if(!is_null($menu)){
+		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
+		}
+
+
+		$this['menu'] = $menu;
+
+		$this['groupOfMenu'] = $groupOfMenu;
+	}
+
+==
+<!-- title -->
+<div class="int-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Berita</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- title -->
+
+
+
+<div class="container">
+  	<div class="row">
+		<div class="col-sm-9 col-sm-push-3 int-content">
+			<!-- list: berita -->
+			{% for item in query.items %}
+			<div class="row list">
+				<div class="col-sm-3">
+					<div class="col-wrap">
+						<div class="list-thumb">
+							<img src="{{ item.featured_images.0.getPath }}">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<h3><a href="{{ 'berita-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
+					<div class="date">{{ item.published_at|date('d F Y') }}</div>
+					<p>{{ item.excerpt|raw }}</p>
+					<a href="{{ 'berita-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+				</div>
+			</div>
+			<hr>
+			{% endfor %}
+			<!-- /list: berita -->
+			{{ query.render|raw }}
+		</div>
+		<!-- /content -->
+
+		<!-- sidebar -->
+		<div class="col-sm-3 col-sm-pull-9 sidebar">
+
+			<div class="sub-nav">
+				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+				<ul>
+					{% for list in groupOfMenu %}
+					{% set active = ((list.title|lower == 'berita') ? true : false )%}
+					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+					{% endfor %}
+				</ul>
+				</div>
+
+				<div class="widget donasi col-wrap">
+				<div class="box-thumbnail">
+				<img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+			</div>
+			<!--<h5>Donasi Renovasi Gereja</h5>-->
+			<p></p>
+			<a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+		</div>
+
+		</div>
+	</div>
+</div>

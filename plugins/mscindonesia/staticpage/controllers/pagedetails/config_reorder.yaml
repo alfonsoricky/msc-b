@@ -1,0 +1,4 @@
+title: PageDetails
+modelClass: Mscindonesia\Staticpage\Models\Details
+toolbar:
+    buttons: reorder_toolbar

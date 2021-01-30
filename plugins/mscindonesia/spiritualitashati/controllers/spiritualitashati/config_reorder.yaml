@@ -1,0 +1,4 @@
+title: SpiritualitasHati
+modelClass: Mscindonesia\Spiritualitashati\Models\SpiritualitasHati
+toolbar:
+    buttons: reorder_toolbar

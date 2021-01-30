@@ -1,0 +1,10 @@
+columns:
+    link_youtube:
+        label: link_youtube
+        type: text
+    title:
+        label: title
+        type: text
+    created_at:
+        label: 'created at'
+        type: text

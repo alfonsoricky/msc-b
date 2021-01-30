@@ -1,0 +1,27 @@
+plugin:
+    name: 'mscindonesia.misa::lang.plugin.name'
+    description: 'mscindonesia.misa::lang.plugin.description'
+    author: mscindonesia
+    icon: oc-icon-adjust
+    homepage: ''
+permissions:
+    msc.misa:
+        tab: mscindonesia
+        label: 'MSC Misa'
+    msc.text:
+        tab: mscindonesia
+        label: 'MSC Text'
+navigation:
+    msc.misa:
+        label: MISA
+        url: mscindonesia/misa/jadwal
+        icon: icon-life-ring
+        sideMenu:
+            msc.misa.jadwal:
+                label: Jadwal
+                url: mscindonesia/misa/jadwal
+                icon: icon-sitemap
+            msc.misa.text:
+                label: Text
+                url: mscindonesia/misa/text
+                icon: icon-stack-exchange

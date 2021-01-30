@@ -1,0 +1,4 @@
+title: Jadwal
+modelClass: Mscindonesia\Misa\Models\Jadwal
+toolbar:
+    buttons: reorder_toolbar

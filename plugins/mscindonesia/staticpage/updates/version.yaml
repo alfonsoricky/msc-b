@@ -1,0 +1,29 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table mscindonesia_staticpage_pages'
+    - builder_table_create_mscindonesia_staticpage_pages.php
+1.0.3:
+    - 'Created table mscindonesia_staticpage_details'
+    - builder_table_create_mscindonesia_staticpage_details.php
+1.0.4:
+    - 'Updated table mscindonesia_staticpage_pages'
+    - builder_table_update_mscindonesia_staticpage_pages.php
+1.0.5:
+    - 'Updated table mscindonesia_staticpage_details'
+    - builder_table_update_mscindonesia_staticpage_details.php
+1.0.6:
+    - 'Updated table mscindonesia_staticpage_details'
+    - builder_table_update_mscindonesia_staticpage_details_2.php
+1.0.7:
+    - 'Updated table mscindonesia_staticpage_details'
+    - builder_table_update_mscindonesia_staticpage_details_3.php
+1.0.8:
+    - 'Updated table mscindonesia_staticpage_pages'
+    - builder_table_update_mscindonesia_staticpage_pages_2.php
+1.0.9:
+    - 'Updated table mscindonesia_staticpage_details'
+    - builder_table_update_mscindonesia_staticpage_details_4.php
+1.0.10:
+    - 'Updated table builder_table_update_post'
+    - builder_table_update_post.php

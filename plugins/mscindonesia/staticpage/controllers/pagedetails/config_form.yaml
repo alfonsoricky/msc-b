@@ -1,0 +1,10 @@
+name: PageDetails
+form: $/mscindonesia/staticpage/models/details/fields.yaml
+modelClass: Mscindonesia\Staticpage\Models\Details
+defaultRedirect: mscindonesia/staticpage/pagedetails
+create:
+    redirect: 'mscindonesia/staticpage/pagedetails/update/:id'
+    redirectClose: mscindonesia/staticpage/pagedetails
+update:
+    redirect: mscindonesia/staticpage/pagedetails
+    redirectClose: mscindonesia/staticpage/pagedetails

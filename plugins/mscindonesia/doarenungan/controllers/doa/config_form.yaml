@@ -1,0 +1,10 @@
+name: Doa
+form: $/mscindonesia/doarenungan/models/doa/fields.yaml
+modelClass: Mscindonesia\Doarenungan\Models\Doa
+defaultRedirect: mscindonesia/doarenungan/doa
+create:
+    redirect: 'mscindonesia/doarenungan/doa/update/:id'
+    redirectClose: mscindonesia/doarenungan/doa
+update:
+    redirect: mscindonesia/doarenungan/doa
+    redirectClose: mscindonesia/doarenungan/doa

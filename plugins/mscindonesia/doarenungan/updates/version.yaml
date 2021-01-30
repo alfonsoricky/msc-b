@@ -1,0 +1,11 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table mscindonesia_doarenungan_doa'
+    - builder_table_create_mscindonesia_doarenungan_doa.php
+1.0.3:
+    - 'Created table mscindonesia_doarenungan_renungan'
+    - builder_table_create_mscindonesia_doarenungan_renungan.php
+1.0.4:
+    - 'Created table mscindonesia_doarenungan_video'
+    - builder_table_create_mscindonesia_doarenungan_video.php

@@ -1,0 +1,4 @@
+title: Renungan
+modelClass: Mscindonesia\Doarenungan\Models\Renungan
+toolbar:
+    buttons: reorder_toolbar

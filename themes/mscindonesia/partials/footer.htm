@@ -1,0 +1,68 @@
+==
+<?php
+use BenFreke\MenuManager\Models\Menu;
+
+  function onStart() {
+
+    $groupOfMenu = array();
+
+
+      $groupOfMenu = Menu::where('parent_id',1)->orderBy('nest_left', 'ASC')->get();
+
+
+
+    $this['groupOfMenu'] = $groupOfMenu;
+
+
+
+  }
+?>
+==
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+
+      <!-- network -->
+      <div class="msc-network">
+        <ul>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-daerah-jakarta-kalimantan-barat-sumatera-selatan'}) }}">Jakarta - Kalbar - Sumsel</a></li>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-daerah-papua'}) }}">Papua</a></li>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-daerah-maluku'}) }}">Maluku</a></li>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-daerah-sulawesi-kalimantan-timur'}) }}">Sulawesi - Kaltim</a></li>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-daerah-jawa-tengah-kalimantan-selatan'}) }}">Jateng - Kalsel</a></li>
+          <li><a href="{{ 'page-type-detail'|page({slug:'daerah-pelayanan', detail:'komunitas-msc-rumah-induk'}) }}">MSC Rumah Induk</a></li>
+        </ul>
+        <ul>
+          <!--<li><a href="http://www.misacor.org/">MSC Global</a></li>-->
+          <li><a href="https://www.mscmissions.ie/">MSC Irlandia</a></li>
+          <li><a href="https://www.misacor-usa.org/">MSC Amerika Serikat</a></li>
+          <li><a href="https://www.misacor.org.au/">MSC Australia</a></li>
+          <!--<li><a href="https://www.mscsa.org.za/">MSC Afrika Selatan</a></li>-->
+          <li><a href="https://www.issoudun-msc.com/">MSC Perancis - Swiss</a></li>
+          <li><a href="https://misacor.nl/en/">MSC Belanda</a></li>
+        </ul>
+      </div>
+      <!-- network -->
+
+      <!-- bottom nav -->
+      <div class="bottom-nav">
+        <ul class="">
+          {% for list in groupOfMenu %}
+
+          <li><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+          {% endfor %}
+
+      
+        </ul>
+      </div>
+      <!-- /bottom nav -->
+
+      <div class="copyright">
+        <a href="{{ 'page-types'|page({slug:'tentang-kami'}) }}">
+          <img src="{{ 'assets/images/logo.png'|theme }}" height="32"> &#8226; Copyright <?php echo date("Y"); ?> MSC Indonesia
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

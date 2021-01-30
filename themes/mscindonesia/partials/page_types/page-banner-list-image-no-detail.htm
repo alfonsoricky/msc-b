@@ -1,0 +1,18 @@
+{{ page.content|raw  }}
+
+{% for detail in page.details %}
+<div class="row list">
+  <div class="col-sm-3">
+    <div class="col-wrap">
+      <div class="list-thumb">
+        <img src="{{ detail.image.getPath }}">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <h3>{{ detail.name }}</h3>
+    {{ detail.content|raw }}
+  </div>
+</div>
+<hr/>
+{% endfor %}

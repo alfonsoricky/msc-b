@@ -1,0 +1,39 @@
+==
+<?php
+	use Mscindonesia\Doarenungan\Models\Doa;
+
+	function onStart() {
+		$query = Doa::orderBy('sort_order', 'asc')->paginate('10');
+		$this['query'] = $query;
+	}
+
+?>
+==
+
+<div class="col-wrap thumb-wrap">
+  <div class="thumb-article">
+    <img src="{{ page.banner.getPath() }}">
+  </div>
+</div>
+
+{% for item in query.items %}
+<div class="row list">
+	<div class="col-sm-3">
+	  <div class="col-wrap">
+	    <div class="list-thumb">
+	      <img src="{{ item.image.getPath }}">
+	    </div>
+	  </div>
+	</div>
+	<div class="col-sm-9">
+	  <h3>{{ item.name }}</h3>
+
+	  {{ item.description|raw }}
+
+	</div>
+</div>
+<hr>
+{% endfor %}
+
+{{ query.render|raw }}
+

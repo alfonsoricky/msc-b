@@ -1,0 +1,11 @@
+{
+    "name": "octobro/oc-midtrans-plugin",
+    "type": "october-plugin",
+    "description": "Midtrans payment gateway plugin for Responsiv.Pay plugin on OctoberCMS",
+    "homepage": "https://github.com/octorboid/oc-midtrans-plugin",
+    "keywords": ["october", "octobercms", "payment", "midtrans", "veritrans", "indonesia", "laravel"],
+    "license": "MIT",
+    "require": {
+        "midtrans/midtrans-php": "2.*"
+    }
+}

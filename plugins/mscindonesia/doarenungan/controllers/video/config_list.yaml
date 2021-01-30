@@ -1,0 +1,12 @@
+list: $/mscindonesia/doarenungan/models/video/columns.yaml
+modelClass: Mscindonesia\Doarenungan\Models\Video
+title: Video
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'mscindonesia/doarenungan/video/update/:id'

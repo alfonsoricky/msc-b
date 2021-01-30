@@ -1,0 +1,36 @@
+plugin:
+    name: 'mscindonesia.staticpage::lang.plugin.name'
+    description: 'mscindonesia.staticpage::lang.plugin.description'
+    author: MSCIndonesia
+    icon: oc-icon-align-left
+    homepage: ''
+permissions:
+    msc.pages:
+        tab: mscindonesia
+        label: 'pages content'
+    'msc.*':
+        tab: mscindonesia
+        label: 'all content in msc'
+    msc.page.detail:
+        tab: mscindonesia
+        label: 'detail page content'
+navigation:
+    static.page:
+        label: 'Static Pages'
+        url: mscindonesia/staticpage/pages
+        icon: icon-life-ring
+        permissions:
+            - msc.pages
+            - 'msc.*'
+        sideMenu:
+            static.page.list:
+                label: Pages
+                url: mscindonesia/staticpage/pages
+                icon: icon-sitemap
+                permissions:
+                    - 'msc.*'
+                    - msc.pages
+            static.page.detail:
+                label: 'Page Details'
+                url: mscindonesia/staticpage/pagedetails
+                icon: icon-signal

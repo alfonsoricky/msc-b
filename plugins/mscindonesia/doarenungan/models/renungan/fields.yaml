@@ -1,0 +1,16 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        default: Renungan
+        type: text
+    date:
+        label: Date
+        mode: date
+        span: auto
+        type: datepicker
+    file:
+        label: File
+        span: left
+        type: fileupload
+        mode: file

@@ -1,0 +1,53 @@
+{% if parentNode and parentNode.getChildCount %}
+<ul class="sf-menu">
+
+  {% for primaryNav in parentNode.getChildren %}
+        {% if primaryNav.enabled %}
+            {% if primaryNav.getChildCount and numberOfLevels > 1 %}
+                <li>
+                    <a href="{{ primaryNav.getLinkHref }}" target="{{ primaryNav.getLinkTarget }}">
+                        {{ primaryNav.title }} <i class="toggle-accordion level-1"></i>
+                    </a>
+            {% else %}
+                <li>
+                    <a href="{{ primaryNav.getLinkHref }}" target="{{ primaryNav.getLinkTarget }}">
+                        {{ primaryNav.title }}
+                    </a>
+            {% endif %}
+            {% if primaryNav.getChildCount and numberOfLevels > 1 %}
+                <ul>
+                    {% for secondaryNav in primaryNav.getChildren %}
+                        {% if secondaryNav.enabled %}
+                            <li>
+                                {% if secondaryNav.getChildCount and numberOfLevels > 2 %}
+                                <a href="{{ secondaryNav.getLinkHref }}" target="{{ secondaryNav.getLinkTarget }}">
+                                    {{ secondaryNav.title }} <i class="toggle-accordion level-2"></i>
+                                {% else %}
+                                <a href="{{ secondaryNav.getLinkHref }}" target="{{ secondaryNav.getLinkTarget }}" >
+                                    {{ secondaryNav.title }}
+                                {% endif %}    
+                                </a>
+                                {% if secondaryNav.getChildCount and numberOfLevels > 2 %}
+                                    <ul>
+                                        {% for tertiaryNav in secondaryNav.getChildren %}
+                                            {% if tertiaryNav.enabled %}
+                                                <li>
+                                                    <a href="{{ tertiaryNav.getLinkHref }}" target="{{ tertiaryNav.getLinkTarget }}">
+                                                        {{ tertiaryNav.title }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+                </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% endif %}

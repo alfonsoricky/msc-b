@@ -1,0 +1,10 @@
+name: Renungan
+form: $/mscindonesia/doarenungan/models/renungan/fields.yaml
+modelClass: Mscindonesia\Doarenungan\Models\Renungan
+defaultRedirect: mscindonesia/doarenungan/renungan
+create:
+    redirect: 'mscindonesia/doarenungan/renungan/update/:id'
+    redirectClose: mscindonesia/doarenungan/renungan
+update:
+    redirect: mscindonesia/doarenungan/renungan
+    redirectClose: mscindonesia/doarenungan/renungan

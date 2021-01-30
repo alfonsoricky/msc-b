@@ -1,0 +1,67 @@
+tabs:
+    fields:
+        banners:
+            label: Banners
+            span: full
+            type: fileupload
+            mode: image
+            imageWidth: '300'
+            tab: Homepage
+        youtube_id:
+            label: Live Streaming Youtube Link
+            span: full
+            type: text
+            comment: insert only youtube ID
+            tab: Homepage
+        content_left_title:
+            span: full
+            label: Content Title
+            type: text
+            tab: Content Left
+        content_left_description:
+            span: full
+            label: Content Description
+            type: richeditor
+            size: large
+            tab: Content Left
+        content_left_link:
+            span: full
+            label: Content Link
+            type: text
+            tab: Content Left
+        content_center_title:
+            span: full
+            label: Content Title
+            type: text
+            tab: Content Center
+        content_center_description:
+            span: full
+            label: Content Description
+            type: richeditor
+            size: large
+            tab: Content Center
+        content_center_link:
+            span: full
+            label: Content Link
+            type: text
+            tab: Content Center
+        content_right_title:
+            span: full
+            label: Content Title
+            type: text
+            tab: Content Right
+        content_right_description:
+            span: full
+            label: Content Description
+            type: richeditor
+            size: large
+            tab: Content Right
+        content_right_link:
+            span: full
+            label: Content Link
+            type: text
+            tab: Content Right
+
+
+
+
