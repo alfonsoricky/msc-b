@@ -55,6 +55,13 @@ class Plugin extends PluginBase
                     'comment' => 'Only ID of youtube',
                     'tab' => 'rainlab.blog::lang.post.tab_manage'
                 ],
+                'location' => [
+                    'label' => 'location',
+                    'span' => 'auto',
+                    'type' => 'text',
+                    'comment' => 'Insert Location',
+                    'tab' => 'rainlab.blog::lang.post.tab_manage'
+                ],
                 'banner' => [
                     'label' => 'Banner',
                     'mode'  => 'image',
