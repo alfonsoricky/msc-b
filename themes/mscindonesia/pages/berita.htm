@@ -64,7 +64,7 @@ is_hidden = 0
 				</div>
 				<div class="col-sm-9">
 					<h3><a href="{{ 'berita-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
-					<div class="date">{{ item.location }}, {{ item.published_at|date('d F Y') }}</div>
+					<div class="date">{{ item.location }} {{ item.published_at|date('d F Y') }}</div>
 					<p>{{ item.excerpt|raw }}</p>
 					<a href="{{ 'berita-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
 				</div>
