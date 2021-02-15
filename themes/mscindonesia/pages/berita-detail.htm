@@ -66,7 +66,7 @@ is_hidden = 0
 			{% endif %}
 			
 			<h3>{{ query.title }}</h3>
-			<div class="date">{{ query.location }}, {{ item.published_at|date('d F Y') }}</div>
+			<div class="date">{{ query.location }}, {{ query.published_at|date('d F Y') }}</div>
 			{{ query.content|raw }}
 		</div>
 		<!-- /content -->
