@@ -51,21 +51,49 @@ use BenFreke\MenuManager\Models\Menu;
 			
 		 <!-- list: youtube -->
 		 {% for item in query.items %}
-	      <div class="row list">
-	        <div class="col-sm-12">
-	          <div class="col-wrap video-thumb">
-	            <div class="video-wrap">
-	              <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ item.youtube }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-sm-12">
-	          <h3>{{ item.title }}</h3>
-	          <div class="date">{{ item.published_at|date('d F Y') }}</div>
-	          <a href="https://www.youtube.com/watch?v={{ item.youtube }}?rel=0" class="btn btn-primary" target="_blank">Tonton di Youtube</a>
-	        </div>
-	      </div>
-	      <hr>
+			{% if item.excerpt is empty %}
+
+				<div class="row list">
+					<div class="col-sm-12">
+					<div class="col-wrap video-thumb">
+						<div class="video-wrap">
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ item.youtube }}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+					</div>
+					<div class="col-sm-12">
+					<h3>{{ item.title }}</h3>
+					<div class="date">{{ item.published_at|date('d F Y') }}</div>
+					<a href="https://www.youtube.com/watch?v={{ item.youtube }}?rel=0" class="btn btn-primary" target="_blank">Tonton di Youtube</a>
+					</div>
+				</div>
+			{% else %}
+
+				<div class="row list">
+					<div class="col-sm-3">
+						<div class="col-wrap">
+							<div class="list-thumb">
+								<img src="{{ item.featured_images.0.getPath }}">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<h3><a href="{{ 'berita-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
+						<div class="date">
+							{% if item.location %}
+								{{ item.location ~ ','}} 
+							{% endif %}
+							
+							{{ item.published_at|date('d F Y') }}
+						</div>
+						<p>{{ item.excerpt|raw }}</p>
+						<a href="{{ 'berita-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+					</div>
+				</div>
+
+			{% endif %}
+
+			<hr>
 	      {% endfor %}
 	      <!-- /list: gallery -->
 			
