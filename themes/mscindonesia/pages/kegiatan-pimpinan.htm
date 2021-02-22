@@ -78,7 +78,7 @@ use BenFreke\MenuManager\Models\Menu;
 						</div>
 					</div>
 					<div class="col-sm-9">
-						<h3><a href="{{ 'kegiatan-pimpinan'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
+						<h3><a href="{{ 'kegiatan-pimpinan-detail'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
 						<div class="date">
 							{% if item.location %}
 								{{ item.location ~ ','}} 
@@ -87,7 +87,7 @@ use BenFreke\MenuManager\Models\Menu;
 							{{ item.published_at|date('d F Y') }}
 						</div>
 						<p>{{ item.excerpt|raw }}</p>
-						<a href="{{ 'kegiatan-pimpinan'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
+						<a href="{{ 'kegiatan-pimpinan-detail'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
 					</div>
 				</div>
 
