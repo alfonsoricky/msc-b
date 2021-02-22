@@ -65,7 +65,12 @@ use BenFreke\MenuManager\Models\Menu;
 			{% endif %}
 			
 			<h3>{{ query.title }}</h3>
-			<div class="date">{{ query.published_at|date('d F Y') }}</div>
+			<div class="date">
+				{% if query.location %}
+					{{ query.location ~ ',' }}
+				{% endif %}
+				{{ query.published_at|date('d F Y') }}
+			</div>
 			{{ query.content|raw }}
 		</div>
 		<!-- /content -->

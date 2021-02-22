@@ -61,7 +61,12 @@ use BenFreke\MenuManager\Models\Menu;
 				</div>
 				<div class="col-sm-9">
 					<h3><a href="{{ 'berita-detail-tahbisan'|page({slug:item.slug}) }}">{{ item.title }}</a></h3>
-					<div class="date">{{ item.published_at|date('d F Y') }}</div>
+					<div class="date">
+						{% if item.location %}
+							{{ item.location ~ ','}} 
+						{% endif %}
+						{{ item.published_at|date('d F Y') }}
+					</div>
 					<p>{{ item.excerpt|raw }}</p>
 					<a href="{{ 'berita-detail-tahbisan'|page({slug:item.slug}) }}" class="btn btn-primary">Selengkapnya</a>
 				</div>
