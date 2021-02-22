@@ -79,7 +79,7 @@ use BenFreke\MenuManager\Models\Menu;
 				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
 				<ul>
 					{% for list in groupOfMenu %}
-					{% set active = ((list.title|lower == 'galeri video') ? true : false )%}
+					{% set active = ((list.title|lower == 'Kegiatan Pimpinan MSC Indonesia') ? true : false )%}
 					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
 					{% endfor %}
 				</ul>
