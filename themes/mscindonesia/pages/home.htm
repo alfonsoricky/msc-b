@@ -42,7 +42,7 @@ use Mscindonesia\Staticpage\Models\Settings;
 
     // get category berita dulu   
     $posts = Post::with(['categories'])->whereHas('categories', function($query) {
-      return $query->where('slug', 'berita');
+      return $query->where('slug', 'kaul-tahbisan-para-msc');
     })->where('published',1)->limit('1')->orderBy('published_at', 'desc')->get();
 
     $this['posts'] = $posts;
