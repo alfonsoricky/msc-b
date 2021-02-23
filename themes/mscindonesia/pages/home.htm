@@ -47,12 +47,19 @@ use Mscindonesia\Staticpage\Models\Settings;
 
     $this['posts'] = $posts;
     
-        // get category berita dulu   
+    // get category berita dulu   
     $msctv = Post::with(['categories'])->whereHas('categories', function($query) {
       return $query->where('slug', 'msc-tv');
     })->where('published',1)->limit('1')->orderBy('published_at', 'desc')->get();
 
     $this['msctv'] = $msctv;
+
+     // get category berita dulu   
+     $kegiatan = Post::with(['categories'])->whereHas('categories', function($query) {
+      return $query->where('slug', 'kegiatan-pimpinan-msc-indonesia');
+    })->where('published',1)->limit('1')->orderBy('published_at', 'desc')->get();
+
+    $this['kegiatan'] = $msctv;
 
 
     //get product
@@ -117,22 +124,24 @@ use Mscindonesia\Staticpage\Models\Settings;
         <p><a href="{{  'berita' }}" class="btn btn-primary">Berita MSC</a></p>
         &nbsp;
     </div>
-    {% for post in msctv %}
+    {% for post in kegiatan %}
     <div class="col-sm-4">
       <div class="col-wrap">
         <div class="box-thumbnail">
-          <a href="berita-artikel.php">
-            <img src="{{ 'storage/app/media/sapaan-provinsialat-1.png' }}">
+          <a href="{{ 'kegiatan-pimpinan-msc-indonesia'|page({slug:post.slug}) }}">
+            {% if post.featured_images.count %}
+            <img src="{{ post.featured_images.0.thumb(0,0,'crop') }}">
+            {% endif %}
           </a>
         </div>
-        <div class="date">03 January 2021<a href="{{  'msc-tv' }}" class="cat video">Video</a> 
+        <div class="date">{{ post.published_at|date('d F Y')  }}<a href="{{  'kegiatan-pimpinan-msc-indonesia' }}" class="cat berita">Berita</a> 
             
         {% if post.categories.count %}
            
         {% endif %}
 
         </div>
-        <h5><a target="_blank" href="https://www.youtube.com/watch?v=zKuSlVbsxZ0?rel=0"><span itemprop="headline">SAPAAN PROVINSIAL MSC PROVINSI INDONESIA NATAL 2020 & TAHUN BARU 2021</span></a></h5>
+        <h5><a target="_blank" href="{{ 'kegiatan-pimpinan-msc-indonesia' }}"><span itemprop="headline">{{ post.title  }}</span></a></h5>
       </div>
     </div>
     {% endfor %}
