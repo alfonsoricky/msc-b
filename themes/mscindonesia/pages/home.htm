@@ -128,7 +128,7 @@ use Mscindonesia\Staticpage\Models\Settings;
     <div class="col-sm-4">
       <div class="col-wrap">
         <div class="box-thumbnail">
-          <a href="{{ 'kegiatan-pimpinan-msc-indonesia'|page({slug:post.slug}) }}">
+          <a href="{{ 'kegiatan-pimpinan-msc-indonesia' }}">
             {% if post.featured_images.count %}
             <img src="{{ post.featured_images.0.thumb(0,0,'crop') }}">
             {% endif %}
