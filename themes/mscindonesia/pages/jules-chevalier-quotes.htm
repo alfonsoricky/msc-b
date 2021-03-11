@@ -1,0 +1,96 @@
+title = "Jules Chevalier Quotes"
+url = "/jules-chevalier-quotes"
+layout = "default"
+is_hidden = 0
+==
+<!-- title -->
+<div class="int-title">
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-12">
+            <h1>Jules Chevalier Quotes</h1>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- title -->
+<div class="container">
+    <div class="row">
+        <div class="row donation-list">
+
+            <!-- content -->
+            <div class="col-sm-9 col-sm-push-3 int-content">
+                <!-- donation item -->
+                <div class="col-sm-6 int-content donation-item">
+                    
+                    <div class="gal-thumb">
+                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes1.jpeg'|theme }}"></a>
+                    </div> 
+                
+                </div>
+                <!-- /donation item -->
+
+                <!-- donation item -->
+                <div class="col-sm-6 int-content donation-item">
+                
+                    <div class="gal-thumb">
+                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes2.jpeg'|theme }}"></a>
+                    </div> 
+                
+                </div>
+                <!-- /donation item -->
+
+                <!-- donation item -->
+                <div class="col-sm-6 int-content donation-item">
+                
+                    <div class="gal-thumb">
+                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes3.jpeg'|theme }}"></a>
+                    </div> 
+                
+                </div>
+                <!-- /donation item -->
+
+                <!-- donation item -->
+                <div class="col-sm-6 int-content donation-item">
+                
+                    <div class="gal-thumb">
+                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes4.jpeg'|theme }}"></a>
+                    </div> 
+                
+                </div>
+                <!-- /donation item -->
+
+                <!-- donation item -->
+                <div class="col-sm-6 int-content donation-item">
+                
+                    <div class="gal-thumb">
+                    <a href="donasi-detail.php"><img src="images/quotes2.jpeg"></a>
+                    </div> 
+                
+                </div>
+                <!-- /donation item -->
+            </div>
+        </div>
+        <!-- sidebar -->
+		<div class="col-sm-3 col-sm-pull-9 sidebar">
+
+			<div class="sub-nav">
+				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
+				<ul>
+					{% for list in groupOfMenu %}
+					{% set active = ((list.title|lower == 'jules-chevalier-quotes') ? true : false )%}
+					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
+					{% endfor %}
+				</ul>
+				</div>
+
+				<div class="widget donasi col-wrap">
+				<div class="box-thumbnail">
+				<img src="{{ 'assets/images/donasithumbnail.jpeg'|theme }}">
+			</div>
+			<!--<h5>Donasi Renovasi Gereja</h5>-->
+			<p></p>
+			<a href="{{ 'donasi'|page }}" class="btn btn-primary">Donasi</a>
+		</div>
+    </div>
+</div>
