@@ -3,6 +3,35 @@ url = "/jules-chevalier-quotes"
 layout = "default"
 is_hidden = 0
 ==
+<?php
+use BenFreke\MenuManager\Models\Menu;
+
+	use RainLab\Blog\Models\Category;
+	use RainLab\Blog\Models\Post;
+
+	function onStart() {
+		
+		$query = Post::with('categories')->whereHas('categories', function($query) {
+			return $query->where('slug', 'jules-chevalier-quotes');
+		})->orderBy('published_at', 'desc')->paginate('10');
+
+
+		$this['query'] = $query;
+
+		$menu = Menu::where('title', 'jules chevalier quotes')->where('nest_depth', '>', '1')->first();
+
+		$groupOfMenu = array();
+
+		if(!is_null($menu)){
+		  $groupOfMenu = Menu::where('parent_id',$menu->parent_id)->orderBy('nest_left', 'ASC')->get();
+		}
+
+		$this['menu'] = $menu;
+		
+		$this['groupOfMenu'] = $groupOfMenu;
+	}
+?>
+==
 <!-- title -->
 <div class="int-title">
     <div class="container">
@@ -15,70 +44,141 @@ is_hidden = 0
 </div>
 <!-- title -->
 <div class="container">
-    <div class="row">
-        <div class="row donation-list">
-
-            <!-- content -->
-            <div class="col-sm-9 col-sm-push-3 int-content">
-                <!-- donation item -->
-                <div class="col-sm-6 int-content donation-item">
-                    
-                    <div class="gal-thumb">
-                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes1.jpeg'|theme }}"></a>
-                    </div> 
-                
-                </div>
-                <!-- /donation item -->
-
-                <!-- donation item -->
-                <div class="col-sm-6 int-content donation-item">
-                
-                    <div class="gal-thumb">
-                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes2.jpeg'|theme }}"></a>
-                    </div> 
-                
-                </div>
-                <!-- /donation item -->
-
-                <!-- donation item -->
-                <div class="col-sm-6 int-content donation-item">
-                
-                    <div class="gal-thumb">
-                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes3.jpeg'|theme }}"></a>
-                    </div> 
-                
-                </div>
-                <!-- /donation item -->
-
-                <!-- donation item -->
-                <div class="col-sm-6 int-content donation-item">
-                
-                    <div class="gal-thumb">
-                    <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes4.jpeg'|theme }}"></a>
-                    </div> 
-                
-                </div>
-                <!-- /donation item -->
-
-                <!-- donation item -->
-                <div class="col-sm-6 int-content donation-item">
-                
-                    <div class="gal-thumb">
-                    <a href="donasi-detail.php"><img src="images/quotes2.jpeg"></a>
-                    </div> 
-                
-                </div>
-                <!-- /donation item -->
+    <div class="row donation-list">
+        
+        <div class="col-sm-9 col-sm-push-3 int-content">
+			<!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes1.jpeg'|theme }}"></a>
+                </div> 
+            
             </div>
-        </div>
-        <!-- sidebar -->
+            <!-- /donation item -->
+    
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes2.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+    
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes3.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+    
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes4.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+    
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes5.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes6.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes7.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes8.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes9.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes10.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes11.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes12.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+            <!-- donation item -->
+            <div class="col-sm-6 int-content donation-item">
+            
+                <div class="gal-thumb">
+                <a href="donasi-detail.php"><img src="{{ 'assets/images/quotes/quotes13.jpeg'|theme }}"></a>
+                </div> 
+            
+            </div>
+            <!-- /donation item -->
+		</div>
+		<!-- /content -->
+
+		<!-- sidebar -->
 		<div class="col-sm-3 col-sm-pull-9 sidebar">
 
 			<div class="sub-nav">
 				<h2><img src="{{ 'assets/images/icon-subnav.png'|theme }}" width="32"> Kategori</h2>
 				<ul>
 					{% for list in groupOfMenu %}
-					{% set active = ((list.title|lower == 'jules-chevalier-quotes') ? true : false )%}
+					{% set active = ((list.title|lower == 'jules chevalier quotes') ? true : false )%}
 					<li class="{{ active ? 'active' : '' }}" ><a href="{{ list.getLinkHref }}">{{ list.title }}</a></li>
 					{% endfor %}
 				</ul>
