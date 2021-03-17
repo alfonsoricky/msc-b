@@ -12,7 +12,7 @@ use BenFreke\MenuManager\Models\Menu;
 	function onStart() {
 		
 		$query = Post::with('categories')->whereHas('categories', function($query) {
-			return $query->where('slug', 'jules-chevalier-quotes');
+			return $query->where('slug', 'quotes-jules-chevalier');
 		})->orderBy('published_at', 'desc')->paginate('10');
 
 
